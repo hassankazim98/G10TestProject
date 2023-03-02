@@ -1,5 +1,9 @@
 package com.example.myapplication.Model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class ProductsItem(val discountPercentage: Double = 0.0,
                         val thumbnail: String = "",
                         val images: List<String>?,
@@ -10,4 +14,4 @@ data class ProductsItem(val discountPercentage: Double = 0.0,
                         val title: String = "",
                         val stock: Int = 0,
                         val category: String = "",
-                        val brand: String = "")
+                        val brand: String = ""): Parcelable

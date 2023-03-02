@@ -18,6 +18,7 @@ import com.example.myapplication.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val productViewModel: ProductViewModel by viewModels()
+    private lateinit var listRecyclerAdapter:ListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +55,9 @@ class MainActivity : AppCompatActivity() {
         if (binding.progressBar.isVisible) {
             binding.progressBar.visibility = View.GONE
         }
-        binding.mainLayout.visibility = View.VISIBLE
-        productModel?.apply {
-            binding.productName.text = products?.get(0)?.title
-            binding.productDetails.text = products?.get(0)?.description
-            binding.rating.text = products?.get(0)?.rating.toString()
-            Glide.with(this@MainActivity).load(products?.get(0)?.thumbnail).into(binding.productImg)
-        }
+        binding.productRecyclerView.visibility = View.VISIBLE
+        listRecyclerAdapter= ListRecyclerAdapter(productModel.products,this)
+        binding.productRecyclerView.adapter=listRecyclerAdapter
     }
 
 
